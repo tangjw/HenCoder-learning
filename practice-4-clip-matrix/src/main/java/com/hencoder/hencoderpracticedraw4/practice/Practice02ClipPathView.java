@@ -20,6 +20,7 @@ public class Practice02ClipPathView extends View {
     
     {
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.maps);
+    
     }
     
     public Practice02ClipPathView(Context context) {
