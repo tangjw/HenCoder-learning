@@ -1,1 +1,1 @@
-include ':app', ':practice-1-draw', ':practice-2-paint', ':practice-3-drawtext'
+include ':app', ':practice-1-draw', ':practice-2-paint', ':practice-3-drawtext', ':practice-4-clip-matrix'
