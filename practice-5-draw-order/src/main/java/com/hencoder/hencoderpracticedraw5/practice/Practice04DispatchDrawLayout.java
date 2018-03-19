@@ -30,11 +30,19 @@ public class Practice04DispatchDrawLayout extends LinearLayout {
     // 把 onDraw() 换成 dispatchDraw()，让绘制内容可以盖住子 View
     // 另外，在改完之后，上面的 setWillNotDraw(false) 也可以删了
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
         
         pattern.draw(canvas);
+        System.out.println("pattern.draw");
     }
+    
+    /*@Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        System.out.println("dispatchDraw");
+        pattern.draw(canvas);
+    }*/
     
     private class Pattern {
         private static final float PATTERN_RATIO = 5f / 6;
@@ -59,6 +67,10 @@ public class Practice04DispatchDrawLayout extends LinearLayout {
         }
         
         private void draw(Canvas canvas) {
+    
+            System.out.println("getWidth(): "+getWidth());
+            System.out.println("getHeight(): "+getHeight());
+            
             int repitition = (int) Math.ceil((float) getWidth() / getHeight());
             for (int i = 0; i < spots.length * repitition; i++) {
                 Spot spot = spots[i % spots.length];

@@ -14,6 +14,7 @@ public class Practice03OnDrawLayout extends LinearLayout {
     
     {
         // 在这里插入 setWillNotDraw(false) 以启用完整的绘制流程
+       setWillNotDraw(false);
     }
     
     public Practice03OnDrawLayout(Context context) {
@@ -29,10 +30,34 @@ public class Practice03OnDrawLayout extends LinearLayout {
     }
     
     @Override
+    public void draw(Canvas canvas) {
+        System.out.println("draw1");
+        super.draw(canvas);
+        System.out.println("draw2");
+    }
+    
+    @Override
+    public void onDrawForeground(Canvas canvas) {
+        System.out.println("onDrawForeground1");
+        super.onDrawForeground(canvas);
+        System.out.println("onDrawForeground2");
+    }
+    
+    
+    @Override
     protected void onDraw(Canvas canvas) {
+        System.out.println("onDraw1");
         super.onDraw(canvas);
-        
+        System.out.println("onDraw2");
         pattern.draw(canvas);
+    }
+    
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        System.out.println("dispatchDraw1");
+        super.dispatchDraw(canvas);
+        System.out.println("dispatchDraw2");
+       
     }
     
     private class Pattern {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.support.annotation.Nullable;
@@ -37,8 +38,20 @@ public class Practice05RotateView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        
+    
+        int bitmapWidth = bitmap.getWidth();
+        int bitmapHeight = bitmap.getHeight();
+    
+        paint.setColor(Color.parseColor("#6CCCCCCC"));
+        canvas.drawRect(point1.x,point1.y,point1.x+bitmapWidth,point1.y+bitmapHeight,paint);
+        paint.reset();
+    
+        canvas.save();
+        //canvas.rotate(10); //默认以 (0,0)旋转
+        canvas.rotate(45,point1.x+bitmapWidth/2,point1.y+bitmapHeight/2);
         canvas.drawBitmap(bitmap, point1.x, point1.y, paint);
+        canvas.restore();
+        
         canvas.drawBitmap(bitmap, point2.x, point2.y, paint);
     }
 }

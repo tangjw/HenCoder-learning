@@ -64,6 +64,8 @@ public class Practice14FlipboardView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+    
+        System.out.println("---------------------");
         
         int bitmapWidth = bitmap.getWidth();
         int bitmapHeight = bitmap.getHeight();
@@ -72,9 +74,34 @@ public class Practice14FlipboardView extends View {
         int x = centerX - bitmapWidth / 2;
         int y = centerY - bitmapHeight / 2;
         
+        //绘制上半部分
         canvas.save();
+        canvas.clipRect(0, 0, getWidth(), centerY);
+        canvas.drawBitmap(bitmap,x,y,paint);
+        canvas.restore();
+        
+        
+        //绘制下半部分
+        canvas.save();
+        if (degree < 90) {
+            canvas.clipRect(0, centerY, getWidth(), getHeight());
+        } else {
+            canvas.clipRect(0, 0, getWidth(), centerY);
+        }
         
         camera.save();
+        camera.rotateX(degree);
+        canvas.translate(centerX,centerY);
+        camera.applyToCanvas(canvas);
+        canvas.translate(-centerX,-centerY);
+        camera.restore();
+    
+        canvas.drawBitmap(bitmap, x, y, paint);
+        canvas.restore();
+        
+        
+        
+       /* camera.save();
         camera.rotateX(degree);
         canvas.translate(centerX, centerY);
         camera.applyToCanvas(canvas);
@@ -82,6 +109,6 @@ public class Practice14FlipboardView extends View {
         camera.restore();
         
         canvas.drawBitmap(bitmap, x, y, paint);
-        canvas.restore();
+        canvas.restore();*/
     }
 }

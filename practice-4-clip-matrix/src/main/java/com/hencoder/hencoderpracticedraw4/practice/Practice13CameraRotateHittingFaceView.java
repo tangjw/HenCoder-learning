@@ -7,11 +7,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Camera;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
@@ -32,9 +34,17 @@ public class Practice13CameraRotateHittingFaceView extends View {
         bitmap.recycle();
         bitmap = scaledBitmap;
         
-        animator.setDuration(5000);
+        animator.setDuration(2000);
         animator.setInterpolator(new LinearInterpolator());
         animator.setRepeatCount(ValueAnimator.INFINITE);
+    
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+    
+        float newZ = -displayMetrics.density * 5;
+    
+        System.out.println("density newZ: "+newZ);
+        
+        camera.setLocation(0,0,newZ);
     }
     
     public Practice13CameraRotateHittingFaceView(Context context) {
@@ -61,7 +71,7 @@ public class Practice13CameraRotateHittingFaceView extends View {
         animator.end();
     }
     
-    @SuppressWarnings("unused")
+
     public void setDegree(int degree) {
         this.degree = degree;
         invalidate();
@@ -73,6 +83,11 @@ public class Practice13CameraRotateHittingFaceView extends View {
         
         int bitmapWidth = bitmap.getWidth();
         int bitmapHeight = bitmap.getHeight();
+    
+        paint.setColor(Color.parseColor("#6CCCCCCC"));
+        canvas.drawRect(point.x,point.y,point.x+bitmapWidth,point.y+bitmapHeight,paint);
+        paint.reset();
+        
         int centerX = point.x + bitmapWidth / 2;
         int centerY = point.y + bitmapHeight / 2;
         

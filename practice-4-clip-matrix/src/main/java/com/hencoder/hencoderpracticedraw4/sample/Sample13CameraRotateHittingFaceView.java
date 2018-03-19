@@ -33,7 +33,7 @@ public class Sample13CameraRotateHittingFaceView extends View {
         bitmap.recycle();
         bitmap = scaledBitmap;
         
-        animator.setDuration(5000);
+        animator.setDuration(1000);
         animator.setInterpolator(new LinearInterpolator());
         animator.setRepeatCount(ValueAnimator.INFINITE);
         
