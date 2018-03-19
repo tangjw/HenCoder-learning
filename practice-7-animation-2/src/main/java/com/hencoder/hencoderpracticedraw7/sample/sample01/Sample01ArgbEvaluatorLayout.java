@@ -37,7 +37,8 @@ public class Sample01ArgbEvaluatorLayout extends RelativeLayout {
         animateBt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                ObjectAnimator animator = ObjectAnimator.ofInt(view, "color", 0xffff0000, 0xff00ff00);
+                ObjectAnimator animator = ObjectAnimator.ofInt(
+                        view, "color", 0xffff0000, 0xff00ff00);
                 animator.setEvaluator(new ArgbEvaluator());
                 animator.setInterpolator(new LinearInterpolator());
                 animator.setDuration(2000);
